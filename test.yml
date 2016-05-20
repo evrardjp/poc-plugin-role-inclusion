@@ -1,0 +1,6 @@
+---
+- hosts: all[0]
+  connection: local
+  roles:
+    - plugins
+    - role: consumingrole
