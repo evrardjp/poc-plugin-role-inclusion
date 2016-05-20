@@ -1,4 +1,6 @@
 ---
+
+## NAME2INT
 - name: test name2int
   name2int:
     name: "test"
@@ -8,14 +10,7 @@
   debug:
     msg: "{{ hashed_name.int_value  }}"
 
-#- name: assert name2int
-#  assert:
-#    that:
-#      - 
-
-#- name: config template
-#  config_template:
-#    src: /tmp/my.yml
-#    dest: /root/yamlfile.yml
-#    config_overrides: "{{ openstack_user_config_overrides | default({}) }}"
-#    config_type: "yaml"
+- name: assert name2int
+  assert:
+    that:
+      - hashed_name.int_value == 20
