@@ -14,3 +14,37 @@
   assert:
     that:
       - hashed_name.int_value == 20
+
+## PROVIDER NETWORKS
+- name: Test provider networks
+  provider_networks:
+    provider_networks: "{{ provider_networks }}"
+  register: pndata1
+
+- name: Test provider networks is metal
+  provider_networks:
+    provider_networks: "{{ provider_networks }}"
+    is_metal: true
+  register: pndata2
+
+- name: Test provider networks with prfix
+  provider_networks:
+    provider_networks: "{{ provider_networks }}"
+    bind_prefix: "brx"
+    is_metal: true
+  register: pndata3
+
+- debug:
+    var: "{{ item }}"
+  with_items:
+    - pndata1
+    - pndata2
+    - pndata3
+
+##
+#- name: config template
+#  config_template:
+#    src: /tmp/my.yml
+#    dest: /root/yamlfile.yml
+#    config_overrides: "{{ openstack_user_config_overrides | default({}) }}"
+#    config_type: "yaml"
